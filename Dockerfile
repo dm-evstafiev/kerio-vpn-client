@@ -4,12 +4,12 @@ ARG deb
 
 ADD ./install.sh /tmp/install.sh
 ADD ./kerio.sh /usr/bin/kerio.sh
-ADD ./mounts.sh /usr/bin/mounts.sh
-ADD http://cdn.kerio.com/dwn/control/control-9.2.6-2720/kerio-control-vpnclient-9.2.6-2720-linux-amd64.deb /tmp/kerio.deb
+#ADD ./mounts.sh /usr/bin/mounts.sh
+ADD http://cdn.kerio.com/dwn/control/control-9.4.4-8434/kerio-control-vpnclient-9.4.4-8434-linux-amd64.deb /tmp/kerio.deb
 ADD ./configure-kerio.sh /usr/bin/configure-kerio.sh
 ADD ./healthcheck.sh /usr/bin/healthcheck.sh
 
-RUN apt-get update && apt-get install -y iproute2 openssl libuuid1 procps cifs-utils smbclient
+RUN apt-get update && apt-get install -y iproute2 openssl libuuid1 procps cifs-utils smbclient && apt clean all && apt autoremove
 
 RUN sh /tmp/install.sh
 
